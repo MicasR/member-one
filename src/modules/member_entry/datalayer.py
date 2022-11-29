@@ -11,7 +11,7 @@ def create_member_entry(entry_details_dict: dict) -> m.MemberEntry:
     return entry
 
 
-def read_member_entry(items_per_page: int, page: int) -> list[m.MemberEntry]:
+def read_member_entries(items_per_page: int, page: int) -> list[m.MemberEntry]:
     with session_maker() as session:
         entries = session.query(m.MemberEntry
         ).order_by(m.MemberEntry.created_at.desc()
@@ -19,3 +19,10 @@ def read_member_entry(items_per_page: int, page: int) -> list[m.MemberEntry]:
         ).all()
     return entries
 
+
+def read_member_entry(id: int) -> m.MemberEntry | None:
+    with session_maker() as session:
+        entry = session.query(m.MemberEntry
+        ).filter(m.MemberEntry.id == id
+        ).first()
+    return entry
