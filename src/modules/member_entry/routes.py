@@ -12,3 +12,9 @@ router = APIRouter(
 async def create_member_entry(member_entry_schema: s.MemberEntryIn):
     new_entry = bl.create_member_entry(member_entry_schema)
     return new_entry
+
+
+@router.get("/", response_model=list[s.MemberEntryOut])
+async def read_posts(items_per_page: int = 15, page: int = 1):
+    entries = bl.read_member_entries(items_per_page, page)
+    return entries
