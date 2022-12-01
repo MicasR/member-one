@@ -29,3 +29,8 @@ async def read_member_entry(id: int):
     if not entry: 
         raise HTTPException(status_code=404, detail="lorem...")
     return entry
+
+
+@router.put("/{id}", response_model=s.MemberEntryOut)
+async def update_member_entry(id: int, member_entry_schema: s.MemberEntryIn):
+    pass
