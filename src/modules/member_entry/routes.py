@@ -27,7 +27,7 @@ async def read_member_entries(items_per_page: int = 15, page: int = 1):
 async def read_member_entry(id: int):
     entry = bl.read_member_entry(id)
     if not entry: 
-        raise HTTPException(status_code=404, detail="lorem...")
+        raise HTTPException(status_code=404, detail=cres[404]["description"])
     return entry
 
 
